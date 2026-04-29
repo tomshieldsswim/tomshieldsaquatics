@@ -151,6 +151,44 @@
     .stats-grid { grid-template-columns: 1fr 1fr; }
     footer { padding: 30px 24px; flex-direction: column; text-align: center; }
   }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px; height: 20px;
+    background: none; border: none; cursor: pointer; padding: 0;
+  }
+  .hamburger span {
+    display: block; width: 100%; height: 2px;
+    background: var(--white); transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed; top: 89px; left: 0; right: 0;
+    background: rgba(30,45,62,0.98);
+    flex-direction: column;
+    padding: 16px 0;
+    z-index: 99;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    padding: 16px 24px;
+    color: var(--white); text-decoration: none;
+    font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--gold); }
+
+  @media (max-width: 900px) {
+    .hamburger { display: flex; }
+  }
 </style>
 </head>
 <body>
@@ -165,7 +203,16 @@
     <li><a href="index.html#social">Follow</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#dates">Dates</a>
+  <a href="about.html">About</a>
+  <a href="index.html#social">Follow</a>
+  <a href="contact.html">Contact</a>
+</div>
 
 <div class="page-hero">
   <div class="page-label">About</div>
@@ -230,5 +277,19 @@
   <div class="footer-copy">Tom Shields Aquatics · Santa Cruz, CA · © 2025</div>
 </footer>
 
+<script>
+  var btn = document.getElementById('hamburger');
+  var menu = document.getElementById('mobileMenu');
+  btn.addEventListener('click', function() {
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+  });
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      btn.classList.remove('open');
+      menu.classList.remove('open');
+    });
+  });
+</script>
 </body>
 </html>
