@@ -49,62 +49,19 @@
   }
 
   section { padding: 100px 48px; }
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 4vw, 56px);
-    letter-spacing: 2px; line-height: 1; color: var(--white); margin-bottom: 48px;
-  }
   .partners-inner { max-width: 1100px; margin: 0 auto; }
 
-  /* Partner cards */
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2px;
+  .logo-gallery {
+    display: flex; flex-wrap: wrap;
+    align-items: center; justify-content: flex-start;
+    gap: 64px; margin-top: 48px;
   }
-  .partner-card {
-    background: rgba(255,255,255,0.03);
-    border-left: 3px solid transparent;
-    padding: 40px 36px;
-    transition: border-color 0.2s, background 0.2s;
-    display: flex; flex-direction: column;
+  .logo-gallery img {
+    height: 56px; width: auto; max-width: 200px;
+    object-fit: contain; opacity: 0.7;
+    transition: opacity 0.2s;
   }
-  .partner-card:hover {
-    border-color: var(--gold);
-    background: rgba(254,199,37,0.04);
-  }
-  .card-badge {
-    display: inline-block;
-    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--gold); background: rgba(254,199,37,0.08);
-    padding: 5px 12px; margin-bottom: 28px; align-self: flex-start;
-  }
-  .card-logo {
-    height: 52px; margin-bottom: 28px;
-    display: flex; align-items: center;
-  }
-  .card-logo img {
-    max-height: 52px; max-width: 180px;
-    width: auto; object-fit: contain;
-    filter: brightness(0) invert(1);
-    opacity: 0.85;
-  }
-  /* Edison has a colored logo — keep it */
-  .card-logo img.keep-color {
-    filter: none;
-    opacity: 0.9;
-  }
-  /* Rise logo is dark on black — invert works */
-  .card-name {
-    font-family: 'DM Serif Display', serif;
-    font-size: 20px; color: var(--white); margin-bottom: 6px;
-  }
-  .card-loc {
-    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 16px;
-  }
-  .card-desc {
-    font-size: 14px; color: rgba(240,244,248,0.5); line-height: 1.7;
-  }
+  .logo-gallery img:hover { opacity: 1; }
 
   /* Become a host */
   .host-section { background: var(--navy); }
@@ -210,64 +167,15 @@
   <p>The facilities and brands that make world-class swim camps and clinics possible. Thank you to everyone in the water with us.</p>
 </div>
 
-<!-- Host Facilities -->
+<!-- Partners Gallery -->
 <section>
   <div class="partners-inner">
-    <p class="section-label">Host Facilities</p>
-    <h2 class="section-title">Where We Train</h2>
-    <div class="cards-grid">
-
-      <div class="partner-card">
-        <span class="card-badge">Facility Partner</span>
-        <div class="card-logo">
-          <img src="RiseLogo.png" alt="Rise Collective Gym">
-        </div>
-        <p class="card-name">Rise Collective Gym</p>
-        <p class="card-loc">Santa Cruz, CA</p>
-        <p class="card-desc">Dryland training, athlete development, and mental performance workshops. Home base for Tom Shields Aquatics in Santa Cruz.</p>
-      </div>
-
-      <div class="partner-card">
-        <span class="card-badge">Facility Partner</span>
-        <div class="card-logo">
-          <img src="edison-high-school.jpg" alt="Edison High School" class="keep-color">
-        </div>
-        <p class="card-name">Edison High School</p>
-        <p class="card-loc">Huntington Beach, CA</p>
-        <p class="card-desc">Host pool for the annual Huntington Beach summer camp — June 26–28. Home of the Chargers and one of Southern California's premier aquatic facilities.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- Equipment Sponsors -->
-<section style="padding-top: 0;">
-  <div class="partners-inner">
-    <p class="section-label">Equipment Sponsors</p>
-    <h2 class="section-title">What We Swim In</h2>
-    <div class="cards-grid">
-
-      <div class="partner-card">
-        <span class="card-badge">Equipment Sponsor</span>
-        <div class="card-logo">
-          <img src="turbologotheone.png" alt="Turbo">
-        </div>
-        <p class="card-name">Turbo</p>
-        <p class="card-loc">Swimwear &amp; Gear</p>
-        <p class="card-desc">Official swimwear sponsor of Tom Shields Aquatics. Turbo outfits our athletes and staff with performance swimwear built for elite training.</p>
-      </div>
-
-      <div class="partner-card">
-        <span class="card-badge">Equipment Sponsor</span>
-        <div class="card-logo">
-          <img src="aquavolologo.png" alt="AquaVolo">
-        </div>
-        <p class="card-name">AquaVolo</p>
-        <p class="card-loc">Training Equipment</p>
-        <p class="card-desc">Official training tools sponsor of Tom Shields Aquatics. AquaVolo's resistance and technique tools are integrated into every camp and clinic curriculum.</p>
-      </div>
-
+    <p class="section-label">Thanks to Our Partners</p>
+    <div class="logo-gallery">
+      <img src="RiseLogo.png" alt="Rise Collective Gym">
+      <img src="edison-high-school.jpg" alt="Edison High School">
+      <img src="turbologotheone.png" alt="Turbo">
+      <img src="aquavolologo.png" alt="AquaVolo">
     </div>
   </div>
 </section>
@@ -310,3 +218,4 @@
 
 </body>
 </html>
+
