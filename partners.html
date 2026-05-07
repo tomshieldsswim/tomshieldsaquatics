@@ -65,29 +65,17 @@
     align-items: center; gap: 56px;
   }
 
-  /* Logo containers — each logo gets the right treatment */
+  /* Logo containers */
   .logo-wrap {
     display: flex; align-items: center;
-    height: 56px;
+    height: 64px;
     transition: opacity 0.2s;
-    opacity: 0.75;
+    opacity: 0.85;
   }
   .logo-wrap:hover { opacity: 1; }
-
-  /* Dark-background logos (Rise, Turbo): screen removes black */
-  .logo-wrap.dark-bg img {
-    height: 56px; width: auto; max-width: 200px;
+  .logo-wrap img {
+    height: 64px; width: auto; max-width: 220px;
     object-fit: contain;
-    mix-blend-mode: screen;
-    filter: brightness(1.1);
-  }
-
-  /* White-background logos (Edison, AquaVolo): multiply removes white */
-  .logo-wrap.light-bg img {
-    height: 56px; width: auto; max-width: 200px;
-    object-fit: contain;
-    mix-blend-mode: lighten;
-    filter: invert(1) brightness(1.2);
   }
 
   /* Become a host */
@@ -201,11 +189,11 @@
     <div class="partner-group">
       <p class="group-label">Host Facilities</p>
       <div class="logo-row">
-        <div class="logo-wrap dark-bg">
-          <img src="RiseLogo.png" alt="Rise Collective Gym">
+        <div class="logo-wrap">
+          <img src="rise3.svg" alt="Rise Collective Gym">
         </div>
-        <div class="logo-wrap light-bg">
-          <img src="edisonhighschool.svg" alt="Edison High School">
+        <div class="logo-wrap">
+          <img src="edisonswimlogo.svg" alt="Edison High School">
         </div>
       </div>
     </div>
@@ -213,11 +201,11 @@
     <div class="partner-group">
       <p class="group-label">Equipment Partners</p>
       <div class="logo-row">
-        <div class="logo-wrap dark-bg">
-          <img src="turbologotheone.png" alt="Turbo">
+        <div class="logo-wrap">
+          <img src="turbologo.svg" alt="Turbo">
         </div>
-        <div class="logo-wrap light-bg">
-          <img src="aquavolologo.png" alt="AquaVolo">
+        <div class="logo-wrap">
+          <img src="aquavolo3.svg" alt="AquaVolo">
         </div>
       </div>
     </div>
