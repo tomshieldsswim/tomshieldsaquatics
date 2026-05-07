@@ -49,35 +49,31 @@
   }
 
   section { padding: 100px 48px; }
-  .partners-inner { max-width: 1100px; margin: 0 auto; }
+  .partners-inner { max-width: 1200px; margin: 0 auto; }
 
-  /* Two-row layout: facilities | equipment */
-  .partner-group { margin-bottom: 64px; }
-  .partner-group:last-child { margin-bottom: 0; }
-  .group-label {
-    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 32px;
-    padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.07);
-  }
-
+  /* Single row of logos, evenly spaced */
   .logo-row {
-    display: flex; flex-wrap: wrap;
-    align-items: center; gap: 56px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 24px;
   }
 
-  /* Logo containers — card style */
   .logo-wrap {
     display: flex; align-items: center; justify-content: center;
-    padding: 20px 28px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.09);
+    flex: 1;
+    padding: 28px 32px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
     border-radius: 12px;
     transition: background 0.2s, opacity 0.2s;
-    opacity: 0.9;
+    opacity: 0.85;
+    min-width: 0;
   }
-  .logo-wrap:hover { background: rgba(255,255,255,0.1); opacity: 1; }
+  .logo-wrap:hover { background: rgba(255,255,255,0.09); opacity: 1; }
   .logo-wrap img {
-    height: 72px; width: auto; max-width: 180px;
+    height: 68px; width: auto; max-width: 160px;
     object-fit: contain;
   }
 
@@ -143,7 +139,8 @@
     .page-hero { padding: 120px 24px 60px; }
     .host-inner { grid-template-columns: 1fr; gap: 32px; }
     footer { padding: 30px 24px; flex-direction: column; text-align: center; }
-    .logo-row { gap: 36px; }
+    .logo-row { flex-wrap: wrap; gap: 20px; }
+    .logo-wrap { flex: 1 1 calc(50% - 10px); }
   }
 </style>
 </head>
@@ -185,34 +182,23 @@
   <p>The facilities and brands that make world-class swim camps and clinics possible. Thank you to everyone in the water with us.</p>
 </div>
 
-<!-- Partners Gallery -->
+<!-- Partners — single row -->
 <section>
   <div class="partners-inner">
-
-    <div class="partner-group">
-      <p class="group-label">Host Facilities</p>
-      <div class="logo-row">
-        <div class="logo-wrap">
-          <img src="rise3.svg" alt="Rise Collective Gym">
-        </div>
-        <div class="logo-wrap">
-          <img src="edisonswimlogo.svg" alt="Edison High School">
-        </div>
+    <div class="logo-row">
+      <div class="logo-wrap">
+        <img src="riselogo11.svg" alt="Rise Collective Gym">
+      </div>
+      <div class="logo-wrap">
+        <img src="edisonlogo.svg" alt="Edison High School">
+      </div>
+      <div class="logo-wrap">
+        <img src="turbologo1.svg" alt="Turbo">
+      </div>
+      <div class="logo-wrap">
+        <img src="aquavolo11.svg" alt="AquaVolo">
       </div>
     </div>
-
-    <div class="partner-group">
-      <p class="group-label">Equipment Partners</p>
-      <div class="logo-row">
-        <div class="logo-wrap">
-          <img src="turbologo.svg" alt="Turbo">
-        </div>
-        <div class="logo-wrap">
-          <img src="aquavolo3.svg" alt="AquaVolo">
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
