@@ -51,17 +51,44 @@
   section { padding: 100px 48px; }
   .partners-inner { max-width: 1100px; margin: 0 auto; }
 
-  .logo-gallery {
+  /* Two-row layout: facilities | equipment */
+  .partner-group { margin-bottom: 64px; }
+  .partner-group:last-child { margin-bottom: 0; }
+  .group-label {
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 32px;
+    padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .logo-row {
     display: flex; flex-wrap: wrap;
-    align-items: center; justify-content: flex-start;
-    gap: 64px; margin-top: 48px;
+    align-items: center; gap: 56px;
   }
-  .logo-gallery img {
-    height: 56px; width: auto; max-width: 200px;
-    object-fit: contain; opacity: 0.7;
+
+  /* Logo containers — each logo gets the right treatment */
+  .logo-wrap {
+    display: flex; align-items: center;
+    height: 56px;
     transition: opacity 0.2s;
+    opacity: 0.75;
   }
-  .logo-gallery img:hover { opacity: 1; }
+  .logo-wrap:hover { opacity: 1; }
+
+  /* Dark-background logos (Rise, Turbo): screen removes black */
+  .logo-wrap.dark-bg img {
+    height: 56px; width: auto; max-width: 200px;
+    object-fit: contain;
+    mix-blend-mode: screen;
+    filter: brightness(1.1);
+  }
+
+  /* White-background logos (Edison, AquaVolo): multiply removes white */
+  .logo-wrap.light-bg img {
+    height: 56px; width: auto; max-width: 200px;
+    object-fit: contain;
+    mix-blend-mode: lighten;
+    filter: invert(1) brightness(1.2);
+  }
 
   /* Become a host */
   .host-section { background: var(--navy); }
@@ -123,9 +150,9 @@
     .hamburger { display: flex; }
     section { padding: 70px 24px; }
     .page-hero { padding: 120px 24px 60px; }
-    .cards-grid { grid-template-columns: 1fr; }
     .host-inner { grid-template-columns: 1fr; gap: 32px; }
     footer { padding: 30px 24px; flex-direction: column; text-align: center; }
+    .logo-row { gap: 36px; }
   }
 </style>
 </head>
@@ -170,13 +197,31 @@
 <!-- Partners Gallery -->
 <section>
   <div class="partners-inner">
-    <p class="section-label">Thanks to Our Partners</p>
-    <div class="logo-gallery">
-      <img src="RiseLogo.png" alt="Rise Collective Gym">
-      <img src="edisonhighschool.svg" alt="Edison High School">
-      <img src="turbologotheone.png" alt="Turbo">
-      <img src="aquavolologo.png" alt="AquaVolo">
+
+    <div class="partner-group">
+      <p class="group-label">Host Facilities</p>
+      <div class="logo-row">
+        <div class="logo-wrap dark-bg">
+          <img src="RiseLogo.png" alt="Rise Collective Gym">
+        </div>
+        <div class="logo-wrap light-bg">
+          <img src="edisonhighschool.svg" alt="Edison High School">
+        </div>
+      </div>
     </div>
+
+    <div class="partner-group">
+      <p class="group-label">Equipment Partners</p>
+      <div class="logo-row">
+        <div class="logo-wrap dark-bg">
+          <img src="turbologotheone.png" alt="Turbo">
+        </div>
+        <div class="logo-wrap light-bg">
+          <img src="aquavolologo.png" alt="AquaVolo">
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -218,4 +263,3 @@
 
 </body>
 </html>
-
