@@ -21,7 +21,6 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body { background: var(--deep); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
-
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
@@ -29,7 +28,6 @@
     background: linear-gradient(to bottom, rgba(30,45,62,0.97) 0%, transparent 100%);
   }
   .nav-logo-img { display: flex; align-items: center; text-decoration: none; }
-  .nav-logo-img img { display: block; }
   nav ul { list-style: none; display: flex; gap: 36px; }
   nav ul a { color: var(--muted); text-decoration: none; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; transition: color 0.2s; }
   nav ul a:hover, nav ul a.active { color: var(--gold); }
@@ -38,12 +36,23 @@
   .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--deep); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
   .mobile-menu.open { display: flex; }
   .mobile-menu a { color: var(--white); text-decoration: none; font-size: 24px; letter-spacing: 3px; text-transform: uppercase; }
-
-  /* PAGE HEADER */
+  footer {
+    background: var(--deep); border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 40px 48px; display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 16px;
+  }
+  .footer-copy { font-size: 12px; color: rgba(122,154,170,0.5); letter-spacing: 1px; }
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    nav ul { display: none; }
+    .hamburger { display: flex; }
+    footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+  }
+</style>
+<style>
   .page-header {
     padding: 160px 48px 80px;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1200px; margin: 0 auto;
   }
   .page-eyebrow {
     font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
@@ -55,112 +64,52 @@
     line-height: 0.9; letter-spacing: 2px;
     color: var(--white); margin-bottom: 24px;
   }
-  .page-sub {
-    font-size: 16px; line-height: 1.8;
-    color: rgba(240,244,248,0.5);
-    max-width: 560px;
-  }
-
-  /* GALLERY GRID */
-  .gallery-section {
-    max-width: 1200px;
-    margin: 0 auto;
+  .events-grid {
+    max-width: 1200px; margin: 0 auto;
     padding: 0 48px 120px;
-  }
-  .event-block {
-    margin-bottom: 80px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding-top: 48px;
-  }
-  .event-meta {
-    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 12px;
-  }
-  .event-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 32px; color: var(--white);
-    margin-bottom: 8px;
-  }
-  .event-details {
-    font-size: 13px; color: var(--muted); margin-bottom: 32px;
-    display: flex; gap: 20px; align-items: center;
-  }
-  .event-details span { display: flex; align-items: center; gap: 6px; }
-  .photo-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+    gap: 32px;
   }
-  .photo-grid .span2 { grid-column: span 2; }
-  .photo-grid .span3 { grid-column: span 3; }
-  .photo-item {
-    aspect-ratio: 4/3;
-    overflow: hidden;
-    background: rgba(255,255,255,0.04);
-    border-radius: 4px;
-  }
-  .photo-item.tall { aspect-ratio: 3/4; }
-  .photo-item.wide { aspect-ratio: 16/6; }
-  .photo-item img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s;
-    filter: brightness(0.9);
-  }
-  .photo-item:hover img { transform: scale(1.03); filter: brightness(1); }
-  .event-recap {
-    margin-top: 28px;
-    font-size: 15px; line-height: 1.9;
-    color: rgba(240,244,248,0.55);
-    max-width: 720px;
-  }
-
-  /* COMING SOON STATE */
-  .coming-soon {
-    padding: 100px 40px;
-    text-align: center;
-    background: rgba(255,255,255,0.02);
+  .event-card {
+    text-decoration: none;
+    display: flex; flex-direction: column;
     border-top: 3px solid var(--gold);
-    border-radius: 4px;
+    background: var(--navy);
+    transition: background 0.2s;
   }
-  .coming-soon-label {
-    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 20px;
+  .event-card:hover { background: rgba(254,199,37,0.06); }
+  .event-card-thumb {
+    aspect-ratio: 16/9; overflow: hidden;
+    background: rgba(255,255,255,0.04);
   }
-  .coming-soon-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(36px, 5vw, 64px); letter-spacing: 2px;
-    color: var(--white); margin-bottom: 20px;
+  .event-card-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover; filter: brightness(0.85);
+    transition: transform 0.4s;
   }
-  .coming-soon-text {
-    font-size: 15px; line-height: 1.8;
-    color: rgba(240,244,248,0.5);
-    max-width: 480px; margin: 0 auto;
+  .event-card:hover .event-card-thumb img { transform: scale(1.03); filter: brightness(1); }
+  .event-card-body { padding: 28px 28px 32px; flex: 1; display: flex; flex-direction: column; }
+  .event-card-meta {
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 10px;
   }
-
-  /* FOOTER */
-  footer {
-    background: var(--deep); border-top: 1px solid rgba(255,255,255,0.06);
-    padding: 40px 48px; display: flex; justify-content: space-between;
-    align-items: center; flex-wrap: wrap; gap: 16px;
+  .event-card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px; color: var(--white); margin-bottom: 16px; flex: 1;
   }
-  .footer-copy { font-size: 12px; color: rgba(122,154,170,0.5); letter-spacing: 1px; }
-
+  .event-card-link {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold); display: inline-flex; align-items: center; gap: 8px;
+  }
+  .event-card-link::after { content: '→'; }
   @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
-    nav ul { display: none; }
-    .hamburger { display: flex; }
     .page-header { padding: 120px 24px 60px; }
-    .gallery-section { padding: 0 24px 80px; }
-    .photo-grid { grid-template-columns: repeat(2, 1fr); }
-    .photo-grid .span2 { grid-column: span 1; }
-    .photo-grid .span3 { grid-column: span 2; }
-    footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+    .events-grid { grid-template-columns: 1fr; padding: 0 24px 80px; }
   }
 </style>
 </head>
 <body>
-
 <nav>
   <a href="index.html" class="nav-logo-img">
     <svg height="48" viewBox="0 0 2048 814" xmlns="http://www.w3.org/2000/svg" style="width:auto;">
@@ -181,7 +130,6 @@
     <span></span><span></span><span></span>
   </button>
 </nav>
-
 <div class="mobile-menu" id="mobileMenu">
   <a href="events.html">Camps &amp; Clinics</a>
   <a href="about.html">About</a>
@@ -194,82 +142,35 @@
 <div class="page-header">
   <div class="page-eyebrow">Tom Shields Aquatics</div>
   <h1 class="page-title">Events<br>Gallery</h1>
-  <p class="page-sub">Photos and recaps from every camp and clinic.</p>
 </div>
 
-<div class="gallery-section">
+<div class="events-grid">
 
   <!-- ============================================================ -->
-  <!-- ADD EVENTS HERE — newest first                               -->
+  <!-- ADD EVENT CARDS HERE — newest first                          -->
   <!-- TEMPLATE:                                                    -->
-  <!--                                                              -->
-  <!-- <div class="event-block">                                    -->
-  <!--   <div class="event-meta">MONTH YEAR · LOCATION</div>       -->
-  <!--   <div class="event-title">Event Name</div>                  -->
-  <!--   <div class="event-details">                                -->
-  <!--     <span>📍 City, State</span>                              -->
-  <!--     <span>👥 XX Athletes</span>                              -->
-  <!--     <span>🏊 Age Groups</span>                               -->
+  <!-- <a href="event-YOUR-SLUG.html" class="event-card">           -->
+  <!--   <div class="event-card-thumb">                             -->
+  <!--     <img src="gallery/YOUR-HERO.jpg" alt="description">      -->
   <!--   </div>                                                     -->
-  <!--   <div class="photo-grid">                                   -->
-  <!--     <div class="photo-item span2">                           -->
-  <!--       <img src="YOUR-PHOTO.jpg" alt="description">           -->
-  <!--     </div>                                                   -->
-  <!--     <div class="photo-item">                                 -->
-  <!--       <img src="YOUR-PHOTO.jpg" alt="description">           -->
-  <!--     </div>                                                   -->
+  <!--   <div class="event-card-body">                              -->
+  <!--     <div class="event-card-meta">MONTH YEAR · LOCATION</div> -->
+  <!--     <div class="event-card-title">Event Name</div>           -->
+  <!--     <div class="event-card-link">View Gallery</div>          -->
   <!--   </div>                                                     -->
-  <!--   <p class="event-recap">2-3 sentence recap of the event.</p>-->
-  <!-- </div>                                                       -->
+  <!-- </a>                                                         -->
   <!-- ============================================================ -->
 
-  <div class="event-block">
-    <div class="event-meta">April 2026 · Seal Beach, CA</div>
-    <div class="event-title">Splash Aquatics x Seal Beach Clinic</div>
-    <div class="event-details">
-      <span>📍 Seal Beach, CA</span>
-      <span>🏊 All Ages</span>
+  <a href="event-splash-seal-beach-apr-2026.html" class="event-card">
+    <div class="event-card-thumb">
+      <img src="gallery/splash-sb-07.png" alt="Splash Aquatics x Seal Beach Clinic">
     </div>
-    <div class="photo-grid">
-      <div class="photo-item span2">
-        <img src="gallery/splash-sb-07.png" alt="Tom addressing athletes poolside">
-      </div>
-      <div class="photo-item">
-        <img src="gallery/splash-sb-13.jpg" alt="Tom with young athlete and Olympic medals">
-      </div>
-      <div class="photo-item">
-        <img src="gallery/splash-sb-09.jpg" alt="Swimmers listening at the wall">
-      </div>
-      <div class="photo-item">
-        <img src="gallery/splash-sb-10.jpg" alt="In-water coaching session">
-      </div>
-      <div class="photo-item">
-        <img src="gallery/splash-sb-11.jpg" alt="Tom teaching technique in the water">
-      </div>
-      <div class="photo-item">
-        <img src="gallery/splash-sb-15.jpg" alt="Tom demonstrating arm position to athlete">
-      </div>
-      <div class="photo-item">
-        <img src="gallery/splash-sb-14.jpg" alt="One-on-one coaching in the pool">
-      </div>
-      <div class="photo-item">
-        <img src="gallery/splash-sb-12.jpg" alt="Block work at dusk">
-      </div>
-      <div class="photo-item span2">
-        <img src="gallery/splash-sb-04.jpg" alt="Tom with Olympic medals poolside at night">
-      </div>
-      <div class="photo-item">
-        <img src="gallery/splash-sb-03.jpg" alt="Tom signing autographs at the clinic">
-      </div>
-      <div class="photo-item">
-        <img src="gallery/splash-sb-01.jpg" alt="Tom coaching one-on-one at the wall">
-      </div>
-      <div class="photo-item">
-        <img src="gallery/splash-sb-02.jpg" alt="In-water instruction with young swimmers">
-      </div>
+    <div class="event-card-body">
+      <div class="event-card-meta">April 2026 · Seal Beach, CA</div>
+      <div class="event-card-title">Splash Aquatics x Seal Beach Clinic</div>
+      <div class="event-card-link">View Gallery</div>
     </div>
-    <p class="event-recap">Tom brought DK Lab to Seal Beach for a full-day clinic hosted by Splash Aquatics in April 2026. Athletes of all ages worked on technique in the water, got one-on-one coaching time with an Olympic gold medalist, and had the chance to hold the hardware. The medals came out. Kids lost their minds.</p>
-  </div>
+  </a>
 
 </div>
 
@@ -279,7 +180,6 @@
   ham.addEventListener('click', () => menu.classList.toggle('open'));
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
 </script>
-
 <footer>
   <div><svg height="32" viewBox="0 0 2048 814" xmlns="http://www.w3.org/2000/svg" style="width:auto; opacity:0.7;">
       <path transform="translate(901,12)" d="m0 0h19l20 4 20 7 34 17 21 13 16 11 14 10 13 10 28 22 16 13 13 10 14 11 21 16 27 18 23 12 21 7 30 5 73 9 57 9 49 9 48 10 52 13 48 14 46 15 35 13 31 13 29 13 29 15 24 14 28 15 37 17 21 10 18 11 11 8 10 8 13 12 11 13 8 13 8 18 8 27 5 8 12 7 12 6 13 9 6 5 5 7 2 9 4 5 1 7-4 7-7 6-10 3h-18l-57-7-24-2h-47l-35 2-35 1-29 1-5-5-9-10-13-21-10-13-13-17-9-15-7-16-2-8-1-8-5-13-9-17-10-14-8-10-9-10-14-14-11-9-13-10-9-8-3-12 1-2v-11l-5-13-7-6-5-2h-10l-8-11-8-4h-9l-8 4-9 14-9 13-8 8-3 2h-33l-33-3-38-5-31-6-35-10-10-2-10-1h-14l-18 3-16 5-25 9-21 4-10 1h-13l-23-3-36-7-59-11-34-5-30-3-43-1-24 1-32 4-27 6-26 8-20 8-23 11-20 12-17 12-16 13-15 13-18 13-19 12-26 15-21 12-14 9-17 12-11 9-13 12-9 11-7 11-8 16-8 21-8 30-7 37-3 14-5 3-27 8-49 16-30 10-24 6-17 3-10 1h-10l-9-1-12 11-11 10-11 9-14 12-17 13-16 11-20 12-17 8-22 8-30 8-43 9-32 5-13 1h-27l-19-2-23-5-20-7v-3l26-6 18-6 16-8 14-9 10-8 10-9 11-12 11-15 14-21 8-7 5-2h10l-8-14-1-4v-17l5-23v-8l-3-7-8-7-9-9-1-3 9-2 11-1 25 2 29 5 36 9 40 11 15 3h10l6-9 9-17 14-22 10-14 14-18 13-14 7-8 25-25 8-7 11-10 14-11 13-11 16-12 19-14 24-16 17-11 21-13 23-13 24-13 19-10 26-13 33-15 42-18 45-19 36-16 31-14 19-10 23-13 12-8 13-10 13-13 8-14 4-13 2-12v-19l-3-19-6-20-8-16-7-11-7-7-10-8-10-9-6-10 3-5 8-4z" fill="#FEC725"/>
