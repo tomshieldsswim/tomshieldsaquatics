@@ -189,10 +189,18 @@
 </div>
 
 <script>
-  const ham = document.getElementById('hamburger');
-  const menu = document.getElementById('mobileMenu');
-  ham.addEventListener('click', () => menu.classList.toggle('open'));
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+  var btn = document.getElementById('hamburger');
+  var menu = document.getElementById('mobileMenu');
+  btn.addEventListener('click', function() {
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+  });
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      btn.classList.remove('open');
+      menu.classList.remove('open');
+    });
+  });
 </script>
 <footer>
   <div><svg height="32" viewBox="0 0 2048 814" xmlns="http://www.w3.org/2000/svg" style="width:auto; opacity:0.7;">
