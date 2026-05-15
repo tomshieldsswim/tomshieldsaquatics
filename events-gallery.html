@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events Gallery — Tom Shields Aquatics</title>
+<meta name="description" content="Photos and recaps from Tom Shields Aquatics swim camps and clinics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2a3b4f;
+    --deep: #1e2d3e;
+    --gold: #fec725;
+    --gold-dim: #d4a500;
+    --white: #f0f4f8;
+    --muted: #8aabb8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--deep); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 48px;
+    background: linear-gradient(to bottom, rgba(30,45,62,0.97) 0%, transparent 100%);
+  }
+  .nav-logo-img { display: flex; align-items: center; text-decoration: none; }
+  .nav-logo-img img { display: block; }
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul a { color: var(--muted); text-decoration: none; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; transition: color 0.2s; }
+  nav ul a:hover, nav ul a.active { color: var(--gold); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: 0.3s; }
+  .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--deep); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { color: var(--white); text-decoration: none; font-size: 24px; letter-spacing: 3px; text-transform: uppercase; }
+
+  /* PAGE HEADER */
+  .page-header {
+    padding: 160px 48px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .page-eyebrow {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+  }
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 8vw, 96px);
+    line-height: 0.9; letter-spacing: 2px;
+    color: var(--white); margin-bottom: 24px;
+  }
+  .page-sub {
+    font-size: 16px; line-height: 1.8;
+    color: rgba(240,244,248,0.5);
+    max-width: 560px;
+  }
+
+  /* GALLERY GRID */
+  .gallery-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px 120px;
+  }
+  .event-block {
+    margin-bottom: 80px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 48px;
+  }
+  .event-meta {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px;
+  }
+  .event-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px; color: var(--white);
+    margin-bottom: 8px;
+  }
+  .event-details {
+    font-size: 13px; color: var(--muted); margin-bottom: 32px;
+    display: flex; gap: 20px; align-items: center;
+  }
+  .event-details span { display: flex; align-items: center; gap: 6px; }
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .photo-grid .span2 { grid-column: span 2; }
+  .photo-grid .span3 { grid-column: span 3; }
+  .photo-item {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: rgba(255,255,255,0.04);
+    border-radius: 4px;
+  }
+  .photo-item.tall { aspect-ratio: 3/4; }
+  .photo-item.wide { aspect-ratio: 16/6; }
+  .photo-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+    filter: brightness(0.9);
+  }
+  .photo-item:hover img { transform: scale(1.03); filter: brightness(1); }
+  .event-recap {
+    margin-top: 28px;
+    font-size: 15px; line-height: 1.9;
+    color: rgba(240,244,248,0.55);
+    max-width: 720px;
+  }
+
+  /* COMING SOON STATE */
+  .coming-soon {
+    padding: 100px 40px;
+    text-align: center;
+    background: rgba(255,255,255,0.02);
+    border-top: 3px solid var(--gold);
+    border-radius: 4px;
+  }
+  .coming-soon-label {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+  }
+  .coming-soon-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 64px); letter-spacing: 2px;
+    color: var(--white); margin-bottom: 20px;
+  }
+  .coming-soon-text {
+    font-size: 15px; line-height: 1.8;
+    color: rgba(240,244,248,0.5);
+    max-width: 480px; margin: 0 auto;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--deep); border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 40px 48px; display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 16px;
+  }
+  .footer-copy { font-size: 12px; color: rgba(122,154,170,0.5); letter-spacing: 1px; }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    nav ul { display: none; }
+    .hamburger { display: flex; }
+    .page-header { padding: 120px 24px 60px; }
+    .gallery-section { padding: 0 24px 80px; }
+    .photo-grid { grid-template-columns: repeat(2, 1fr); }
+    .photo-grid .span2 { grid-column: span 1; }
+    .photo-grid .span3 { grid-column: span 2; }
+    footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo-img">
+    <svg height="48" viewBox="0 0 2048 814" xmlns="http://www.w3.org/2000/svg" style="width:auto;">
+      <path transform="translate(901,12)" d="m0 0h19l20 4 20 7 34 17 21 13 16 11 14 10 13 10 28 22 16 13 13 10 14 11 21 16 27 18 23 12 21 7 30 5 73 9 57 9 49 9 48 10 52 13 48 14 46 15 35 13 31 13 29 13 29 15 24 14 28 15 37 17 21 10 18 11 11 8 10 8 13 12 11 13 8 13 8 18 8 27 5 8 12 7 12 6 13 9 6 5 5 7 2 9 4 5 1 7-4 7-7 6-10 3h-18l-57-7-24-2h-47l-35 2-35 1-29 1-5-5-9-10-13-21-10-13-13-17-9-15-7-16-2-8-1-8-5-13-9-17-10-14-8-10-9-10-14-14-11-9-13-10-9-8-3-12 1-2v-11l-5-13-7-6-5-2h-10l-8-11-8-4h-9l-8 4-9 14-9 13-8 8-3 2h-33l-33-3-38-5-31-6-35-10-10-2-10-1h-14l-18 3-16 5-25 9-21 4-10 1h-13l-23-3-36-7-59-11-34-5-30-3-43-1-24 1-32 4-27 6-26 8-20 8-23 11-20 12-17 12-16 13-15 13-18 13-19 12-26 15-21 12-14 9-17 12-11 9-13 12-9 11-7 11-8 16-8 21-8 30-7 37-3 14-5 3-27 8-49 16-30 10-24 6-17 3-10 1h-10l-9-1-12 11-11 10-11 9-14 12-17 13-16 11-20 12-17 8-22 8-30 8-43 9-32 5-13 1h-27l-19-2-23-5-20-7v-3l26-6 18-6 16-8 14-9 10-8 10-9 11-12 11-15 14-21 8-7 5-2h10l-8-14-1-4v-17l5-23v-8l-3-7-8-7-9-9-1-3 9-2 11-1 25 2 29 5 36 9 40 11 15 3h10l6-9 9-17 14-22 10-14 14-18 13-14 7-8 25-25 8-7 11-10 14-11 13-11 16-12 19-14 24-16 17-11 21-13 23-13 24-13 19-10 26-13 33-15 42-18 45-19 36-16 31-14 19-10 23-13 12-8 13-10 13-13 8-14 4-13 2-12v-19l-3-19-6-20-8-16-7-11-7-7-10-8-10-9-6-10 3-5 8-4z" fill="#FEC725"/>
+      <path transform="translate(1471,577)" d="m0 0 3 3 7 13 5 6 9 6-1-8-3-18 4-2h6l3 3 8 15 11 12 14 7-6-28v-6l3-1 38 5 20 4 3 1-1 4-10 13-11 12-7 8-12 12-22 18-18 12-21 12-19 9-28 10-29 9-28 7-20 3h-24l-5-2-6-7 3-5 14-11 11-10 8-7 13-12 16-15z" fill="#FEC725"/>
+      <path transform="translate(1589,470)" d="m0 0h8l2 3-1 17-10-2-26-8-2-2 9-3z" fill="#FEC725"/>
+    </svg>
+  </a>
+  <ul>
+    <li><a href="events.html">Camps &amp; Clinics</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="lessons.html">Private</a></li>
+    <li><a href="events-gallery.html" class="active">Events Gallery</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="events.html">Camps &amp; Clinics</a>
+  <a href="about.html">About</a>
+  <a href="lessons.html">Private</a>
+  <a href="events-gallery.html">Events Gallery</a>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<div class="page-header">
+  <div class="page-eyebrow">Tom Shields Aquatics</div>
+  <h1 class="page-title">Events<br>Gallery</h1>
+  <p class="page-sub">Photos and recaps from every camp and clinic. This is what it looks like when swimmers do the work.</p>
+</div>
+
+<div class="gallery-section">
+
+  <!-- ============================================================ -->
+  <!-- ADD EVENTS HERE — newest first                               -->
+  <!-- TEMPLATE:                                                    -->
+  <!--                                                              -->
+  <!-- <div class="event-block">                                    -->
+  <!--   <div class="event-meta">MONTH YEAR · LOCATION</div>       -->
+  <!--   <div class="event-title">Event Name</div>                  -->
+  <!--   <div class="event-details">                                -->
+  <!--     <span>📍 City, State</span>                              -->
+  <!--     <span>👥 XX Athletes</span>                              -->
+  <!--     <span>🏊 Age Groups</span>                               -->
+  <!--   </div>                                                     -->
+  <!--   <div class="photo-grid">                                   -->
+  <!--     <div class="photo-item span2">                           -->
+  <!--       <img src="YOUR-PHOTO.jpg" alt="description">           -->
+  <!--     </div>                                                   -->
+  <!--     <div class="photo-item">                                 -->
+  <!--       <img src="YOUR-PHOTO.jpg" alt="description">           -->
+  <!--     </div>                                                   -->
+  <!--   </div>                                                     -->
+  <!--   <p class="event-recap">2-3 sentence recap of the event.</p>-->
+  <!-- </div>                                                       -->
+  <!-- ============================================================ -->
+
+  <div class="coming-soon">
+    <div class="coming-soon-label">Coming Soon</div>
+    <div class="coming-soon-title">First Events<br>This Summer</div>
+    <p class="coming-soon-text">Santa Cruz clinics kick off June 6th. Check back after events for photos, recaps, and highlights from every session.</p>
+  </div>
+
+</div>
+
+<script>
+  const ham = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+  ham.addEventListener('click', () => menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+</script>
+
+<footer>
+  <div><svg height="32" viewBox="0 0 2048 814" xmlns="http://www.w3.org/2000/svg" style="width:auto; opacity:0.7;">
+      <path transform="translate(901,12)" d="m0 0h19l20 4 20 7 34 17 21 13 16 11 14 10 13 10 28 22 16 13 13 10 14 11 21 16 27 18 23 12 21 7 30 5 73 9 57 9 49 9 48 10 52 13 48 14 46 15 35 13 31 13 29 13 29 15 24 14 28 15 37 17 21 10 18 11 11 8 10 8 13 12 11 13 8 13 8 18 8 27 5 8 12 7 12 6 13 9 6 5 5 7 2 9 4 5 1 7-4 7-7 6-10 3h-18l-57-7-24-2h-47l-35 2-35 1-29 1-5-5-9-10-13-21-10-13-13-17-9-15-7-16-2-8-1-8-5-13-9-17-10-14-8-10-9-10-14-14-11-9-13-10-9-8-3-12 1-2v-11l-5-13-7-6-5-2h-10l-8-11-8-4h-9l-8 4-9 14-9 13-8 8-3 2h-33l-33-3-38-5-31-6-35-10-10-2-10-1h-14l-18 3-16 5-25 9-21 4-10 1h-13l-23-3-36-7-59-11-34-5-30-3-43-1-24 1-32 4-27 6-26 8-20 8-23 11-20 12-17 12-16 13-15 13-18 13-19 12-26 15-21 12-14 9-17 12-11 9-13 12-9 11-7 11-8 16-8 21-8 30-7 37-3 14-5 3-27 8-49 16-30 10-24 6-17 3-10 1h-10l-9-1-12 11-11 10-11 9-14 12-17 13-16 11-20 12-17 8-22 8-30 8-43 9-32 5-13 1h-27l-19-2-23-5-20-7v-3l26-6 18-6 16-8 14-9 10-8 10-9 11-12 11-15 14-21 8-7 5-2h10l-8-14-1-4v-17l5-23v-8l-3-7-8-7-9-9-1-3 9-2 11-1 25 2 29 5 36 9 40 11 15 3h10l6-9 9-17 14-22 10-14 14-18 13-14 7-8 25-25 8-7 11-10 14-11 13-11 16-12 19-14 24-16 17-11 21-13 23-13 24-13 19-10 26-13 33-15 42-18 45-19 36-16 31-14 19-10 23-13 12-8 13-10 13-13 8-14 4-13 2-12v-19l-3-19-6-20-8-16-7-11-7-7-10-8-10-9-6-10 3-5 8-4z" fill="#FEC725"/>
+      <path transform="translate(1471,577)" d="m0 0 3 3 7 13 5 6 9 6-1-8-3-18 4-2h6l3 3 8 15 11 12 14 7-6-28v-6l3-1 38 5 20 4 3 1-1 4-10 13-11 12-7 8-12 12-22 18-18 12-21 12-19 9-28 10-29 9-28 7-20 3h-24l-5-2-6-7 3-5 14-11 11-10 8-7 13-12 16-15z" fill="#FEC725"/>
+      <path transform="translate(1589,470)" d="m0 0h8l2 3-1 17-10-2-26-8-2-2 9-3z" fill="#FEC725"/>
+    </svg></div>
+  <div class="footer-copy">Tom Shields Aquatics · Santa Cruz, CA · © 2025</div>
+</footer>
+</body>
+</html>
