@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santa Cruz Clinic — Tom Shields Aquatics</title>
+<meta name="description" content="Swim clinic with Olympic Gold Medalist Tom Shields. June 6 & 13, Rise Collective, Santa Cruz CA. $150 per session.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#2a3b4f;--deep:#1e2d3e;--gold:#fec725;--gold-dim:#d4a500;--white:#f0f4f8;--muted:#8aabb8;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--deep);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:20px 48px;background:rgba(30,45,62,0.97);border-bottom:1px solid rgba(255,255,255,0.06);}
+  .nav-logo-img{display:flex;align-items:center;text-decoration:none;}
+  nav ul{list-style:none;display:flex;gap:36px;}
+  nav ul a{color:var(--muted);text-decoration:none;font-size:13px;letter-spacing:2px;text-transform:uppercase;transition:color 0.2s;}
+  nav ul a:hover,nav ul a.active{color:var(--gold);}
+  .hamburger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;background:none;border:none;cursor:pointer;padding:0;}
+  .hamburger span{display:block;width:100%;height:2px;background:var(--white);transition:all 0.3s;}
+  .hamburger.open span:nth-child(1){transform:translateY(9px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg);}
+  .mobile-menu{display:none;position:fixed;top:89px;left:0;right:0;background:rgba(30,45,62,0.98);flex-direction:column;padding:16px 0;z-index:99;border-bottom:1px solid rgba(255,255,255,0.08);}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:16px 24px;color:var(--white);text-decoration:none;font-size:13px;letter-spacing:2px;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.05);transition:color 0.2s;}
+  .mobile-menu a:hover{color:var(--gold);}
+
+  .hero{padding:140px 48px 60px;max-width:1200px;margin:0 auto;}
+  .back-link{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:8px;margin-bottom:32px;}
+  .back-link:hover{color:var(--gold);}
+  .back-link::before{content:'←';}
+  .eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+  .event-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,7vw,90px);line-height:0.95;letter-spacing:2px;color:var(--white);margin-bottom:32px;}
+  .meta-row{display:flex;gap:24px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;font-size:13px;color:var(--muted);}
+  .meta-item{display:flex;align-items:center;gap:8px;}
+  .meta-dot{width:4px;height:4px;background:var(--gold);border-radius:50%;flex-shrink:0;}
+
+  .body-wrap{max-width:1200px;margin:0 auto;padding:60px 48px 0;}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-bottom:64px;}
+  .section-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+  .body-copy{font-size:16px;line-height:1.85;color:rgba(240,244,248,0.7);}
+
+  /* DATE CARDS */
+  .dates-wrap{margin-bottom:64px;}
+  .dates-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+  .date-card{background:rgba(255,255,255,0.03);padding:40px 36px;border-top:3px solid transparent;transition:border-color 0.2s,background 0.2s;}
+  .date-card:hover{border-color:var(--gold);background:rgba(254,199,37,0.04);}
+  .date-num{font-family:'Bebas Neue',sans-serif;font-size:80px;line-height:1;color:var(--white);margin-bottom:4px;}
+  .date-month{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+  .date-detail{font-size:13px;color:rgba(240,244,248,0.6);line-height:1.8;margin-bottom:28px;}
+  .date-price{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);margin-bottom:20px;}
+  .register-btn{display:block;text-align:center;padding:14px 24px;background:var(--gold);color:var(--deep);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:500;text-decoration:none;transition:background 0.2s;}
+  .register-btn:hover{background:#ffd54f;}
+
+  /* SCHEDULE */
+  .schedule-wrap{margin-bottom:64px;}
+  .schedule-note{font-size:13px;color:var(--muted);margin-bottom:28px;font-style:italic;}
+  .timeline{display:flex;flex-direction:column;}
+  .tl-item{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+  .tl-item:last-child{border-bottom:none;}
+  .tl-time{font-size:11px;color:var(--muted);letter-spacing:1px;padding-top:2px;}
+  .tl-label{font-size:13px;font-weight:500;color:var(--white);margin-bottom:4px;}
+  .tl-desc{font-size:13px;color:rgba(240,244,248,0.6);line-height:1.6;}
+
+  /* COACH */
+  .coach-wrap{display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:80px;align-items:start;}
+  .coach-img-block{aspect-ratio:3/4;background:rgba(255,255,255,0.04);overflow:hidden;}
+  .coach-img-block img{width:100%;height:100%;object-fit:cover;filter:brightness(0.9);}
+  .coach-name{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--white);line-height:0.95;margin-bottom:16px;}
+  .coach-creds{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+  .coach-bio{font-size:15px;line-height:1.85;color:rgba(240,244,248,0.7);}
+
+  /* VENUE */
+  .venue-wrap{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:40px;margin-bottom:80px;}
+  .venue-name{font-family:'DM Serif Display',serif;font-size:24px;color:var(--white);margin-bottom:8px;}
+  .venue-address{font-size:13px;color:var(--muted);margin-bottom:16px;}
+  .venue-desc{font-size:14px;color:rgba(240,244,248,0.6);line-height:1.7;}
+
+  footer{background:var(--deep);border-top:1px solid rgba(255,255,255,0.06);padding:40px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .footer-copy{font-size:12px;color:rgba(122,154,170,0.5);letter-spacing:1px;}
+
+  @media(max-width:900px){
+    nav{padding:16px 24px;}
+    nav ul{display:none;}
+    .hamburger{display:flex;}
+    .hero{padding:120px 24px 48px;}
+    .body-wrap{padding:40px 24px 0;}
+    .two-col{grid-template-columns:1fr;gap:32px;}
+    .dates-grid{grid-template-columns:1fr;}
+    .tl-item{grid-template-columns:90px 1fr;gap:12px;}
+    .coach-wrap{grid-template-columns:1fr;}
+    footer{padding:32px 24px;flex-direction:column;text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo-img">
+    <svg height="48" viewBox="0 0 2048 814" xmlns="http://www.w3.org/2000/svg" style="width:auto;">
+      <path transform="translate(901,12)" d="m0 0h19l20 4 20 7 34 17 21 13 16 11 14 10 13 10 28 22 16 13 13 10 14 11 21 16 27 18 23 12 21 7 30 5 73 9 57 9 49 9 48 10 52 13 48 14 46 15 35 13 31 13 29 13 29 15 24 14 28 15 37 17 21 10 18 11 11 8 10 8 13 12 11 13 8 13 8 18 8 27 5 8 12 7 12 6 13 9 6 5 5 7 2 9 4 5 1 7-4 7-7 6-10 3h-18l-57-7-24-2h-47l-35 2-35 1-29 1-5-5-9-10-13-21-10-13-13-17-9-15-7-16-2-8-1-8-5-13-9-17-10-14-8-10-9-10-14-14-11-9-13-10-9-8-3-12 1-2v-11l-5-13-7-6-5-2h-10l-8-11-8-4h-9l-8 4-9 14-9 13-8 8-3 2h-33l-33-3-38-5-31-6-35-10-10-2-10-1h-14l-18 3-16 5-25 9-21 4-10 1h-13l-23-3-36-7-59-11-34-5-30-3-43-1-24 1-32 4-27 6-26 8-20 8-23 11-20 12-17 12-16 13-15 13-18 13-19 12-26 15-21 12-14 9-17 12-11 9-13 12-9 11-7 11-8 16-8 21-8 30-7 37-3 14-5 3-27 8-49 16-30 10-24 6-17 3-10 1h-10l-9-1-12 11-11 10-11 9-14 12-17 13-16 11-20 12-17 8-22 8-30 8-43 9-32 5-13 1h-27l-19-2-23-5-20-7v-3l26-6 18-6 16-8 14-9 10-8 10-9 11-12 11-15 14-21 8-7 5-2h10l-8-14-1-4v-17l5-23v-8l-3-7-8-7-9-9-1-3 9-2 11-1 25 2 29 5 36 9 40 11 15 3h10l6-9 9-17 14-22 10-14 14-18 13-14 7-8 25-25 8-7 11-10 14-11 13-11 16-12 19-14 24-16 17-11 21-13 23-13 24-13 19-10 26-13 33-15 42-18 45-19 36-16 31-14 19-10 23-13 12-8 13-10 13-13 8-14 4-13 2-12v-19l-3-19-6-20-8-16-7-11-7-7-10-8-10-9-6-10 3-5 8-4z" fill="#FEC725"/>
+      <path transform="translate(1471,577)" d="m0 0 3 3 7 13 5 6 9 6-1-8-3-18 4-2h6l3 3 8 15 11 12 14 7-6-28v-6l3-1 38 5 20 4 3 1-1 4-10 13-11 12-7 8-12 12-22 18-18 12-21 12-19 9-28 10-29 9-28 7-20 3h-24l-5-2-6-7 3-5 14-11 11-10 8-7 13-12 16-15z" fill="#FEC725"/>
+      <path transform="translate(1589,470)" d="m0 0h8l2 3-1 17-10-2-26-8-2-2 9-3z" fill="#FEC725"/>
+    </svg>
+  </a>
+  <ul>
+    <li><a href="events.html" class="active">Camps &amp; Clinics</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="lessons.html">Private</a></li>
+    <li><a href="events-gallery.html">Events Gallery</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="events.html">Camps &amp; Clinics</a>
+  <a href="about.html">About</a>
+  <a href="lessons.html">Private</a>
+  <a href="events-gallery.html">Events Gallery</a>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<div class="hero">
+  <a href="events.html" class="back-link">All Events</a>
+  <div class="eyebrow">Clinic · Santa Cruz, CA</div>
+  <h1 class="event-title">Santa Cruz<br>Swim Clinic</h1>
+  <div class="meta-row">
+    <div class="meta-item"><span class="meta-dot"></span>June 6 &amp; June 13, 2026</div>
+    <div class="meta-item"><span class="meta-dot"></span>Rise Collective · Capitola, CA</div>
+    <div class="meta-item"><span class="meta-dot"></span>$150 per session</div>
+    <div class="meta-item"><span class="meta-dot"></span>All competitive levels welcome</div>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  <div class="two-col">
+    <div>
+      <div class="section-label">About This Clinic</div>
+      <p class="body-copy">Two focused sessions at Rise Collective's pool in Capitola. Each clinic combines in-water technique work with a mental performance workshop — the same curriculum Tom used to compete at the Olympic level, brought to the Santa Cruz community.</p>
+    </div>
+    <div>
+      <div class="section-label">What to Bring</div>
+      <p class="body-copy">Suit, cap, goggles, and fins. Bring a water bottle. Each session is 2 hours of in-water work followed by a 30-minute mental performance workshop. No club affiliation required.</p>
+    </div>
+  </div>
+
+  <!-- DATE CARDS -->
+  <div class="dates-wrap">
+    <div class="section-label">Pick Your Date</div>
+    <div class="dates-grid">
+      <div class="date-card">
+        <div class="date-num">6</div>
+        <div class="date-month">June 2026 · Friday</div>
+        <div class="date-detail">
+          9:00 AM – 11:30 AM<br>
+          Rise Collective · 816 Bay Ave Suite D, Capitola
+        </div>
+        <div class="date-price">$150</div>
+        <a href="https://checkout.page/s/Jxw7sWgzGs2Bw" target="_blank" class="register-btn">Register for June 6</a>
+      </div>
+      <div class="date-card">
+        <div class="date-num">13</div>
+        <div class="date-month">June 2026 · Friday</div>
+        <div class="date-detail">
+          9:00 AM – 11:30 AM<br>
+          Rise Collective · 816 Bay Ave Suite D, Capitola
+        </div>
+        <div class="date-price">$150</div>
+        <a href="https://checkout.page/s/jdh76vZrN6eI6" target="_blank" class="register-btn">Register for June 13</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCHEDULE -->
+  <div class="schedule-wrap">
+    <div class="section-label">Session Schedule</div>
+    <div class="schedule-note">Same schedule applies to both June 6 and June 13.</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">8:45–9:00 AM</div>
+        <div class="tl-content"><div class="tl-label">Check-In</div><div class="tl-desc">Arrive at Rise Collective pool deck.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">9:00–11:00 AM</div>
+        <div class="tl-content"><div class="tl-label">In-Water Session</div><div class="tl-desc">Technique, drills, breakouts, turns, and underwater work. Tom coaches each athlete through targeted progressions built around their stroke and competitive level.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">11:00–11:30 AM</div>
+        <div class="tl-content"><div class="tl-label">Mental Performance Workshop</div><div class="tl-desc">30 minutes on the mental side of competitive swimming — pre-race routines, visualization, handling pressure, and performing when it counts.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">11:30 AM</div>
+        <div class="tl-content"><div class="tl-label">Wrap-Up</div><div class="tl-desc"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VENUE -->
+  <div class="venue-wrap">
+    <div class="section-label">Venue</div>
+    <div class="venue-name">Rise Collective</div>
+    <div class="venue-address">816 Bay Avenue, Suite D · Capitola, CA 95010</div>
+    <div class="venue-desc">Rise Collective is a fitness and wellness facility in Capitola featuring a warm indoor pool, group fitness, and recovery amenities. Ample parking on site. Parents are welcome to watch from the pool area.</div>
+  </div>
+
+  <!-- COACH -->
+  <div class="coach-wrap">
+    <div class="coach-img-block">
+      <img src="rioheadshot.webp" alt="Tom Shields">
+    </div>
+    <div class="coach-details">
+      <div class="section-label">Your Coach</div>
+      <div class="coach-name">Tom<br>Shields</div>
+      <div class="coach-creds">Olympic Gold Medalist · 2× Olympian · World Record Holder</div>
+      <p class="coach-bio">Tom Shields is one of the most decorated butterfliers in American swimming history. A two-time Olympian and Olympic Gold Medalist, Tom brings the technique, mindset, and competitive experience of the world's highest stage to every athlete he coaches. His approach combines elite technical precision with the mental performance frameworks that took him from club swimmer to the Olympic podium.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div><svg height="32" viewBox="0 0 2048 814" xmlns="http://www.w3.org/2000/svg" style="width:auto;opacity:0.7;">
+    <path transform="translate(901,12)" d="m0 0h19l20 4 20 7 34 17 21 13 16 11 14 10 13 10 28 22 16 13 13 10 14 11 21 16 27 18 23 12 21 7 30 5 73 9 57 9 49 9 48 10 52 13 48 14 46 15 35 13 31 13 29 13 29 15 24 14 28 15 37 17 21 10 18 11 11 8 10 8 13 12 11 13 8 13 8 18 8 27 5 8 12 7 12 6 13 9 6 5 5 7 2 9 4 5 1 7-4 7-7 6-10 3h-18l-57-7-24-2h-47l-35 2-35 1-29 1-5-5-9-10-13-21-10-13-13-17-9-15-7-16-2-8-1-8-5-13-9-17-10-14-8-10-9-10-14-14-11-9-13-10-9-8-3-12 1-2v-11l-5-13-7-6-5-2h-10l-8-11-8-4h-9l-8 4-9 14-9 13-8 8-3 2h-33l-33-3-38-5-31-6-35-10-10-2-10-1h-14l-18 3-16 5-25 9-21 4-10 1h-13l-23-3-36-7-59-11-34-5-30-3-43-1-24 1-32 4-27 6-26 8-20 8-23 11-20 12-17 12-16 13-15 13-18 13-19 12-26 15-21 12-14 9-17 12-11 9-13 12-9 11-7 11-8 16-8 21-8 30-7 37-3 14-5 3-27 8-49 16-30 10-24 6-17 3-10 1h-10l-9-1-12 11-11 10-11 9-14 12-17 13-16 11-20 12-17 8-22 8-30 8-43 9-32 5-13 1h-27l-19-2-23-5-20-7v-3l26-6 18-6 16-8 14-9 10-8 10-9 11-12 11-15 14-21 8-7 5-2h10l-8-14-1-4v-17l5-23v-8l-3-7-8-7-9-9-1-3 9-2 11-1 25 2 29 5 36 9 40 11 15 3h10l6-9 9-17 14-22 10-14 14-18 13-14 7-8 25-25 8-7 11-10 14-11 13-11 16-12 19-14 24-16 17-11 21-13 23-13 24-13 19-10 26-13 33-15 42-18 45-19 36-16 31-14 19-10 23-13 12-8 13-10 13-13 8-14 4-13 2-12v-19l-3-19-6-20-8-16-7-11-7-7-10-8-10-9-6-10 3-5 8-4z" fill="#FEC725"/>
+    <path transform="translate(1471,577)" d="m0 0 3 3 7 13 5 6 9 6-1-8-3-18 4-2h6l3 3 8 15 11 12 14 7-6-28v-6l3-1 38 5 20 4 3 1-1 4-10 13-11 12-7 8-12 12-22 18-18 12-21 12-19 9-28 10-29 9-28 7-20 3h-24l-5-2-6-7 3-5 14-11 11-10 8-7 13-12 16-15z" fill="#FEC725"/>
+    <path transform="translate(1589,470)" d="m0 0h8l2 3-1 17-10-2-26-8-2-2 9-3z" fill="#FEC725"/>
+  </svg></div>
+  <div class="footer-copy">Tom Shields Aquatics · © 2026</div>
+</footer>
+
+<script>
+var btn = document.getElementById('hamburger');
+var menu = document.getElementById('mobileMenu');
+btn.addEventListener('click', function(){ btn.classList.toggle('open'); menu.classList.toggle('open'); });
+menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ btn.classList.remove('open'); menu.classList.remove('open'); }); });
+</script>
+</body>
+</html>
