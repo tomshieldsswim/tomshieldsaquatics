@@ -123,8 +123,9 @@
   }
   .events-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 2px;
+    align-items: stretch;
   }
 
   .event-card {
@@ -134,7 +135,7 @@
     transition: border-color 0.3s, background 0.3s;
     display: none;
   }
-  .event-card.visible { display: flex; flex-direction: column; }
+  .event-card.visible { display: flex; flex-direction: column; height: 100%; }
   .event-card:hover { border-color: var(--gold); background: rgba(254,199,37,0.04); }
 
   .event-type-tag {
@@ -181,6 +182,7 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 32px; color: var(--gold); margin-bottom: 20px;
   }
+  .event-spacer { flex: 1; }
   .event-btn {
     display: block; text-align: center; padding: 13px 24px;
     background: var(--gold); color: var(--deep);
@@ -257,7 +259,7 @@
 <div class="page-hero">
   <div class="page-label">Schedule</div>
   <h1 class="page-title">Camps &amp;<br>Clinics</h1>
-  <p class="page-intro">Open enrollment events hosted at pools across California and beyond. No club affiliation required. All competitive levels welcome.</p>
+  
 </div>
 
 <div class="filter-wrap">
